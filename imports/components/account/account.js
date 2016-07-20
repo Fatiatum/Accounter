@@ -25,18 +25,13 @@ class AccountCtrl {
   }
   addIteam(newIteam) {
     // Insert a task into the collection
-    Balance.insert({
-      value: newIteam,
-      createdAt: new Date,
-      owner: Meteor.userId(),
-      username: Meteor.user().username
-    });
+    Meteor.call('balance.insert', newIteam);
 
     // Clear form
     this.newIteam = '';
   }
   removeIteam(iteam) {
-    Balance.remove(iteam._id);
+    Meteor.call('balance.remove', iteam._id);
   }
 }
 
