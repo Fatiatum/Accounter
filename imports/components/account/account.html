@@ -1,5 +1,9 @@
 <header>
   <h1>My Account</h1>
+
+  <form class="new-iteam" ng-submit="$ctrl.addIteam($ctrl.newIteam)">
+    <input ng-model="$ctrl.newIteam" type="number" name="value" placeholder="Type to add new iteam"/>
+  </form>
 </header>
 
 <ul>
