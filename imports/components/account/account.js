@@ -9,6 +9,8 @@ class AccountCtrl {
   constructor($scope) {
     $scope.viewModel(this);
 
+    this.subscribe('balance');
+
     this.helpers({
       balance() {
         // Show newest tasks at the top
@@ -32,6 +34,9 @@ class AccountCtrl {
   }
   removeIteam(iteam) {
     Meteor.call('balance.remove', iteam._id);
+  }
+  setPrivate(iteam) {
+    Meteor.call('balance.setPrivate', iteam._id, !iteam.private);
   }
 }
 

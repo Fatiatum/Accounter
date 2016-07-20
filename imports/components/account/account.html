@@ -9,10 +9,16 @@
 </header>
 
 <ul>
-  <li ng-repeat="iteam in $ctrl.balance">
+  <li ng-repeat="iteam in $ctrl.balance" ng-class="{'private': iteam.private}">
+
     <button class="delete" ng-click="$ctrl.removeIteam(iteam)">&times;</button>
+
     <span class="text">
       <strong>{{iteam.username}}</strong> - {{iteam.value}}
     </span>
+
+    <button class="toggle-private" ng-click="$ctrl.setPrivate(iteam)" ng-show="iteam.owner === $ctrl.currentUser._id">
+      {{iteam.private == true ? "Private" : "Public"}}
+    </button>
   </li>
 </ul>
