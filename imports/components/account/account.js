@@ -1,5 +1,6 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
+import { Meteor } from 'meteor/meteor';
 import { Balance } from '../../api/balance.js';
 
 import template from './account.html';
@@ -16,6 +17,9 @@ class AccountCtrl {
             createdAt: -1
           }
         });
+      },
+      currentUser() {
+        return Meteor.user();
       }
     })
   }
@@ -23,7 +27,9 @@ class AccountCtrl {
     // Insert a task into the collection
     Balance.insert({
       value: newIteam,
-      createdAt: new Date
+      createdAt: new Date,
+      owner: Meteor.userId(),
+      username: Meteor.user().username
     });
 
     // Clear form

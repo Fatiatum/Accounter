@@ -1,13 +1,17 @@
 <header>
   <h1>My Account</h1>
 
-  <form class="new-iteam" ng-submit="$ctrl.addIteam($ctrl.newIteam)">
+  <login-buttons></login-buttons>
+
+  <form class="new-iteam" ng-submit="$ctrl.addIteam($ctrl.newIteam)" ng-show="$ctrl.currentUser">
     <input ng-model="$ctrl.newIteam" type="number" name="value" placeholder="Type to add new iteam"/>
   </form>
 </header>
 
 <ul>
   <li ng-repeat="iteam in $ctrl.balance">
-    {{iteam.value}}
+    <span class="text">
+      <strong>{{iteam.username}}</strong> - {{iteam.value}}
+    </span>
   </li>
 </ul>
