@@ -35,6 +35,9 @@ class AccountCtrl {
     // Clear form
     this.newIteam = '';
   }
+  removeIteam(iteam) {
+    Balance.remove(iteam._id);
+  }
 }
 
 export default angular.module('account', [
