@@ -20,8 +20,9 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  'balance.insert' (value) {
+  'balance.insert' (value, text) {
     check(value, Number);
+    check(text, String);
 
     // Make sure the user is logged in before inserting a iteam
     if (!Meteor.userId()) {
@@ -30,6 +31,7 @@ Meteor.methods({
 
     Balance.insert({
       value,
+      text,
       createdAt: new Date(),
       owner: Meteor.userId(),
       username: Meteor.user().username,

@@ -11,26 +11,40 @@ class AccountCtrl {
 
     this.subscribe('balance');
 
+    $scope.values = 0;
+
     this.helpers({
       balance() {
+        $scope.values = 0;
+
+        // Get total value
+        Balance.find({}, {
+          sort: {
+            createdAt: -1
+          }
+        }).map(function(u){$scope.values += u.value});
+        console.log($scope.values);
+
         // Show newest tasks at the top
-        return Balance.find({}, {
+        var balance = Balance.find({}, {
           sort: {
             createdAt: -1
           }
         });
+        return balance;
       },
       currentUser() {
         return Meteor.user();
       }
     })
   }
-  addIteam(newIteam) {
+  addIteam(newIteamValue, newIteamText) {
     // Insert a task into the collection
-    Meteor.call('balance.insert', newIteam);
+    Meteor.call('balance.insert', newIteamValue, newIteamText);
 
     // Clear form
-    this.newIteam = '';
+    this.newIteamValue = '';
+    this.newIteamText = '';
   }
   removeIteam(iteam) {
     Meteor.call('balance.remove', iteam._id);

@@ -2,23 +2,32 @@
   <h1>My Account</h1>
 
   <login-buttons></login-buttons>
-
-  <form class="new-iteam" ng-submit="$ctrl.addIteam($ctrl.newIteam)" ng-show="$ctrl.currentUser">
-    <input ng-model="$ctrl.newIteam" type="number" name="value" placeholder="Type to add new iteam"/>
-  </form>
 </header>
 
-<ul>
-  <li ng-repeat="iteam in $ctrl.balance" ng-class="{'private': iteam.private}">
-
-    <button class="delete" ng-click="$ctrl.removeIteam(iteam)">&times;</button>
-
-    <span class="text">
-      <strong>{{iteam.username}}</strong> - {{iteam.value}}
-    </span>
-
-    <button class="toggle-private" ng-click="$ctrl.setPrivate(iteam)" ng-show="iteam.owner === $ctrl.currentUser._id">
-      {{iteam.private == true ? "Private" : "Public"}}
-    </button>
-  </li>
-</ul>
+<table>
+  <tr>
+    <th>User</th>
+    <th>Amount</th>
+    <th>Description</th>
+    <th>Date</th>
+    <th>Remove</th>
+  </tr>
+  <tr>
+    <td>{{$ctrl.currentUser.username}}</td>
+    <td><input ng-model="$ctrl.newIteamValue" type="number" name="value" placeholder="Type to add new iteam"/></td>
+    <td><input ng-model="$ctrl.newIteamText" type="text" name="text" placeholder="Type to add new iteam"/></td>
+    <td></td>
+    <td><button type="button" name="button" ng-click="$ctrl.addIteam($ctrl.newIteamValue, $ctrl.newIteamText)">Submit</button></td>
+  </tr>
+  <tr ng-repeat="iteam in $ctrl.balance" ng-class="{'private': iteam.private}">
+    <td>{{iteam.username}}</td>
+    <td>{{iteam.value}}</td>
+    <td>{{iteam.text}}</td>
+    <td>{{iteam.createdAt}}</td>
+    <td><button class="delete" ng-click="$ctrl.removeIteam(iteam)">&times;</button></td>
+  </tr>
+  <tr>
+    <td>Total</td>
+    <td>{{values}}</td>
+  </tr>
+</table>
