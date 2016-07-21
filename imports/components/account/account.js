@@ -2,6 +2,7 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import { Meteor } from 'meteor/meteor';
 import { Balance } from '../../api/balance.js';
+import CalendarFilter from '../filters/calendar.filter';
 
 import template from './account.html';
 
@@ -23,7 +24,6 @@ class AccountCtrl {
             createdAt: -1
           }
         }).map(function(u){$scope.values += u.value});
-        console.log($scope.values);
 
         // Show newest tasks at the top
         var balance = Balance.find({}, {

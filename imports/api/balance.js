@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import Moment from 'moment';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
 
@@ -32,7 +33,7 @@ Meteor.methods({
     Balance.insert({
       value,
       text,
-      createdAt: new Date(),
+      createdAt: Moment().format("llll"),
       owner: Meteor.userId(),
       username: Meteor.user().username,
     });
